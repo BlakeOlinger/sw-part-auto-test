@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SolidWorks.Interop.sldworks;
+using System;
 
 namespace sw_part_auto_test
 {
@@ -9,7 +10,13 @@ namespace sw_part_auto_test
 
             var app = CreateSWInstance.Create();
 
-           
+            Out.Ln("Attempting to open assembly...");
+
+            SWOpenPart.Open(app,
+                (DocumentSpecification)app.GetOpenDocSpec(
+                    User.GetConsoleInput("Enter File Name:")
+                    )
+                );
         }
     }
 }
