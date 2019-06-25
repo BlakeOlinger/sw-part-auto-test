@@ -22,14 +22,25 @@ namespace sw_part_auto_test
                 );
 
             var equationManager = SWEquation.GetEquationMgr(model);
-            
+
+
+
             // var newEquation = "\"O.D.@Sketch1\"= 42in";
+            // var newGlobalEquation = "\"coverHasHoleOne\" = 1";
+            
+            var newFeatureBool = "\"Cover Hole One\"= IIF ( 1 = 0, \"unsuppressed\" , \"suppressed\" )";
 
             // SWEquation.AddEquation(equationManager, newEquation);
 
-            // SWEquation.DisplayEquations(model.GetEquationMgr());
+            // SWEquation.AddEquation(equationManager, newGlobalEquation);
 
-            // SWEquation.Build(model);
+            SWEquation.AddEquation(equationManager, newFeatureBool);
+
+            Out.Ln("\n" + newFeatureBool + "\n");
+
+             SWEquation.DisplayEquations(model.GetEquationMgr());
+
+             SWEquation.Build(model);
 
             
             // SWSystem.CloseApp(app, true);

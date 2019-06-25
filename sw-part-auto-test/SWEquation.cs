@@ -79,7 +79,12 @@ namespace sw_part_auto_test
         public static void AddEquation(EquationMgr equationMgr,
             string equation)
         {
-            equationMgr.Add(equationMgr.GetCount(), equation);
+            if ((equationMgr.Add(equationMgr.GetCount(), equation)) == 1){
+                Out.Ln("Equation Successfully Added");
+            } else
+            {
+                Out.Ln("Equation Successfully Added");
+            }
         }
 
         /*
@@ -111,40 +116,10 @@ namespace sw_part_auto_test
 
         public static void Build(IModelDoc2 model)
         {
-            
-            
-           // equationMgr.EvaluateAll();
-            try
-            {
-                //Thread.Sleep(3000);
-                if (model.EditRebuild3()) {
-                    Out.Ln("Rebuild Returned Success");
-                };
-            } catch(ArgumentOutOfRangeException ignore)
-            {
 
+            if (model.EditRebuild3()) {
+                Out.Ln("Rebuild Returned Success");
             }
-
-            /*
-            if (modelDocExtension.Rebuild(2)) {
-                Out.Ln("Model Rebuilt Successfully");
-            } else
-            {
-                Out.Ln("Model Was Not Rebuilt");
-            }
-
-            
-            try
-            {
-                Thread.Sleep(2000);
-
-                equationMgr.EvaluateAll();
-            } catch(ArgumentOutOfRangeException ignore)
-            {
-
-            }
-            */
-
         }
     }
 }
