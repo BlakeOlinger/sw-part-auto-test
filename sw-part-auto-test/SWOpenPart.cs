@@ -14,7 +14,7 @@ namespace sw_part_auto_test
 
             if ((swAssemblyDoc = app.OpenDoc7(documentSpecification)) == null)
             {
-                Out.Ln("Error: Could Not Open Assembly Document");
+                Out.Ln("Error: Could Not Open Document");
 
                 return null;
             }

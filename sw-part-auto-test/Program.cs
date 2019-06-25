@@ -1,5 +1,6 @@
 ﻿using SolidWorks.Interop.sldworks;
 using System;
+using System.Globalization;
 
 namespace sw_part_auto_test
 {
@@ -8,15 +9,30 @@ namespace sw_part_auto_test
         static void Main(string[] args)
         {
 
+            
             var app = CreateSWInstance.Create();
 
             Out.Ln("Attempting to open assembly...");
 
-            SWOpenPart.Open(app,
+            
+            var model = SWOpenPart.Open(app,
                 (DocumentSpecification)app.GetOpenDocSpec(
-                    User.GetConsoleInput("Enter File Name:")
-                    )
+                    "C:\\Users\\bolinger\\Documents\\SW Projects\\Blob\\C-HSSX.blob.SLDPRT"
+                )
                 );
+
+            var equationManager = SWEquation.GetEquationMgr(model);
+            
+            // var newEquation = "\"O.D.@Sketch1\"= 42in";
+
+            // SWEquation.AddEquation(equationManager, newEquation);
+
+            // SWEquation.DisplayEquations(model.GetEquationMgr());
+
+            // SWEquation.Build(model);
+
+            
+            // SWSystem.CloseApp(app, true);
         }
     }
 }
