@@ -1,6 +1,7 @@
 ﻿
 using SolidWorks.Interop.sldworks;
 using System;
+using System.Threading;
 
 namespace sw_part_auto_test
 {
@@ -26,6 +27,15 @@ namespace sw_part_auto_test
                     if (app == null)
                         throw new Exception();
                     Out.Ln("...Success");
+
+                    try
+                    {
+                        Thread.Sleep(500);
+                    }catch(ArgumentOutOfRangeException ignore)
+                    {
+
+                    }
+                    Console.Clear();
 
                     return app;
                 } catch(Exception ignore)
