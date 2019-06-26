@@ -51,6 +51,8 @@ namespace sw_part_auto_test
             }
         }
 
+        // possibly obsolete
+        /*
         public static void SetEquation(EquationMgr equationMgr, string equation,
             double value, int index)
         {
@@ -75,6 +77,7 @@ namespace sw_part_auto_test
                 Out.Ln(newEquation);
             }
         }
+        */
 
         public static void AddEquation(EquationMgr equationMgr,
             string equation)

@@ -14,7 +14,7 @@ namespace sw_part_auto_test
             {
                 ConsoleFrame.DefaultFrame();
 
-                Out.Ln("\nCreating SW App...");
+                Out.Ln("Creating SW App...");
 
                 Out.Ln("Getting SW App Type...");
                 var swType = Type.GetTypeFromProgID("SldWorks.Application.24");

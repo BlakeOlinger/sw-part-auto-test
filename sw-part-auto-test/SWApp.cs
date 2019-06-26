@@ -26,7 +26,7 @@ namespace sw_part_auto_test
 
             ConsoleFrame.DefaultFrame();
 
-            Out.Ln("\nAttempting to open document...");
+            Out.Ln("Attempting to open document...");
 
 
             swApp.model = SWOpenPart.Open(app,
@@ -42,7 +42,7 @@ namespace sw_part_auto_test
 
                 try
                 {
-                    Out.Ln("\nDocument Successfully Opened...");
+                    Out.Ln("Document Successfully Opened...");
                     Thread.Sleep(500);
                 }
                 catch (ArgumentOutOfRangeException ignore)
@@ -50,7 +50,7 @@ namespace sw_part_auto_test
                     Out.Ln("Thread Execution Exception");
                 }
 
-                Out.Ln("\nDocument Successfully Opened.");
+                Out.Ln("Document Successfully Opened.");
 
                 Console.Clear();
 

@@ -2,10 +2,12 @@
 {
     class AvailableEquationsDO
     {
-        public static string[] availableEquations = {
-            "\"O.D.@Sketch1\"",
-            "\"Cover B.C.\" = IIF ( 1 =",
-            " , \"unsuppressed\" , \"suppressed\" )"
+        public static string[] GetAll = {
+            "\"O.D.@Sketch1\" = ",
+            "in", "Cover Diameter:",
+            "\"Cover B.C.\" = IIF ( 1 = ",
+            " , \"unsuppressed\" , \"suppressed\" )",
+            "Base Cover BC Bool: (1 = yes)"
         };
     }
 }

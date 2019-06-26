@@ -6,7 +6,7 @@ namespace sw_part_auto_test
     {
         public static void FrameHeader()
         {
-            var appHeader = "   TOPP Cover Automation Application";
+            var appHeader = "   TOPP Cover Automation Application\n";
 
             Out.Ln(appHeader);
         }
@@ -18,7 +18,21 @@ namespace sw_part_auto_test
 
         public static void CommandReferenceHeader()
         {
+            Out.Ln("q - quit");
+            Out.Ln("\n");
+        }
 
+        public static string FeatureSelection()
+        {
+            return "Select a feature to modify.\n" +
+                " Cover Diameter: 1\n Cover BC Bool: 2";
+        }
+
+        protected static void Clear()
+        {
+            Console.Clear();
+
+            DefaultFrame();
         }
     }
 }

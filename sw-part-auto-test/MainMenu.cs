@@ -1,114 +1,63 @@
-﻿using SolidWorks.Interop.sldworks;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace sw_part_auto_test
 {
     class MainMenu : ConsoleFrame
     {
-        public static void Make(SWApp swApp)
+        public static void Make(SWApp swApp, List<CurrentEquationsDDO> coverDDO)
         {
-            var cover = new CoverDTO();
             var model = swApp.GetModel();
             var equationManager = swApp.GetEquationManager();
-            var coverDDO = new List<CurrentEquationsDDO>();
 
-            /*
-            cover.SetCoverDiameter(
-                User.GetConsoleInput("\nEnter Cover Diameter: ")
+            // all the daemon has to do is return the appropriate indexes
+            // for the equation list - which I could do with
+            // featurelistdictionary
+            //
+            // DaemonEventHandler - may be obsolete
+            // ^ not true
+            // need the daemon to dispatch so the other
+            // handlers don't have to all be able to do everything
+            // absolutely anything receiving user input must
+            // be handled by daemon
+
+            // send to daemon
+            var userInput = User.GetConsoleInput(
+                ConsoleFrame.FeatureSelection()
                 );
 
-            Out.Ln("Cover Diameter: " + cover.GetCoverDiameter());
-            
-            Out.Ln(AvailableEquationsDO.availableEquations[0]);
+            ConsoleFrame.Clear();
 
-            var newEquation = AvailableEquationsDO.availableEquations[0] +
-               " = " + cover.GetCoverDiameter() + "in";
+            // every frame after the initial must have this header
+            // every instance of user input must be able to select any
+            // from the command menu
+            ConsoleFrame.CommandReferenceHeader();
 
-            Out.Ln(newEquation);
-            
-            SWEquation.AddEquation(
-                equationManager,
-                newEquation
+            int[] index = new int[3];
+
+            // send to daemon
+            index = FeatureListDictionary.GetEquationsIndexes(userInput);
+
+            // Out.Ln(userInput);
+           
+            // send to daemon
+            coverDDO = FeatureEventHandler.ProcessUserInput(
+                coverDDO, equationManager, model,
+                AvailableEquationsDO.GetAll[index[0]],
+                AvailableEquationsDO.GetAll[index[1]],
+                AvailableEquationsDO.GetAll[index[2]]
                 );
-                
-            SWEquation.DisplayEquations(equationManager);
-
-            SWEquation.Build(model);
-            */
             
-            
-            // make into class.method that takes list<t> argument and
-            // returns list<t>
-            var userInput = User.GetConsoleInput("\nDoes the cover have a Bolt Circle?" +
-                "\nEnter 1 for yes, else for no:");
-
-            cover.SetBCbool(
-                userInput
-                );
-
-             coverDDO[0].SetUserInput(userInput);
-
-            
-            Out.Ln(cover.GetBCbool());
-            
-            Out.Ln(AvailableEquationsDO.availableEquations[1]);
-            Out.Ln(AvailableEquationsDO.availableEquations[2]);
-            
-
-            var newBCEquation = AvailableEquationsDO.availableEquations[1] +
-                " " + cover.GetBCbool() + AvailableEquationsDO.availableEquations[2];
-
-            
-            coverDDO[0].SetEquation(
-                AvailableEquationsDO.availableEquations[1]
-                );
-            coverDDO[0].SetEquationEnd(
-                AvailableEquationsDO.availableEquations[2]
-                );
-                
-            Out.Ln(newBCEquation);
-
-            SWEquation.AddEquation(
-                equationManager,
-                newBCEquation
-                );
-
-            SWEquation.DisplayEquations(equationManager);
-
-            var index = equationManager.GetCount() - 1;
-
-            /*
-            Out.Ln("equation: " + SWEquation.GetEquation(
-                equationManager, index
-                ));
-                */
-
-            coverDDO.Add(new CurrentEquationsDDO(
-                index,
-                userInput,
-                AvailableEquationsDO.availableEquations[1],
-                AvailableEquationsDO.availableEquations[2]
-                ));
-
-            /*
-            coverDDO[0].SetIndex(
-                index
-                );
-                
-            
-            Out.Ln(
-                coverDDO[0].GetIndex()
-                );
-            Out.Ln(coverDDO[0].GetEquation());
-            Out.Ln(coverDDO[0].GetUserInput());
-            Out.Ln(coverDDO[0].GetEquationEnd());
-            */
-
-            SWEquation.Build(model);
-
             UserConsolePrompts.PressAnyKeyToContinue();
-            
 
+            // ConsoleFrame.Clear();
+
+           //  ConsoleFrame.CommandReferenceHeader();
+
+            // send to daemon
+            /*userInput = User.GetConsoleInput("Type q to quit, " +
+                "enter another command\n" +
+                "  ...or press any key to return to the menu.");
+                */
         }
     }
 }

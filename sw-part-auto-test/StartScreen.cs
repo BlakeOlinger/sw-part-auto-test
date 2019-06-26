@@ -9,7 +9,7 @@ namespace sw_part_auto_test
         {
             FrameHeader();
 
-            Out.Ln("\n" + initialAppMessage);
+            Out.Ln(initialAppMessage);
 
             Out.Ln("\n  ...Press Enter to Continue.");
 

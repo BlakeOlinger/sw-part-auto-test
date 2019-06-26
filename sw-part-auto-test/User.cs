@@ -7,7 +7,7 @@ namespace sw_part_auto_test
         public static string GetConsoleInput(string inputRequest)
         {
             Out.Ln(inputRequest);
-
+            
             return Console.ReadLine();
         }
     }

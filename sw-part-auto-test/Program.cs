@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace sw_part_auto_test
 {
     class Program
@@ -36,47 +38,10 @@ namespace sw_part_auto_test
 
             var swApp = SWApp.initialize(app);
 
-            // change above from startscreen to this line into class
-            // with static factory that takes app as parameter
-            // and has two private fields equationmanager and model
-            // then pass that object to mainmenu.make
-            MainMenu.Make(swApp);
+            var coverDDO = new List<CurrentEquationsDDO>();
 
-            /*
-            Out.Ln("Attempting to open document...");
+            MainMenu.Make(swApp, coverDDO);
 
-            
-            var model = SWOpenPart.Open(app,
-                (DocumentSpecification)app.GetOpenDocSpec(
-                    "C:\\Users\\bolinger\\Documents\\SW Projects\\Blob\\C-HSSX.blob.SLDPRT"
-                )
-                );
-                */
-
-            // UserConsolePrompts.ClearConsole();
-
-            // var equationManager = SWEquation.GetEquationMgr(model);
-
-
-
-            // var newEquation = "\"O.D.@Sketch1\"= 42in";
-            // var newGlobalEquation = "\"coverHasHoleOne\" = 1";
-            
-            // var newFeatureBool = "\"Cover Hole One\"= IIF ( 1 = 0, \"unsuppressed\" , \"suppressed\" )";
-
-            // SWEquation.AddEquation(equationManager, newEquation);
-
-            // SWEquation.AddEquation(equationManager, newGlobalEquation);
-
-            // SWEquation.AddEquation(equationManager, newFeatureBool);
-
-           // Out.Ln("\n" + newFeatureBool + "\n");
-
-           //  SWEquation.DisplayEquations(model.GetEquationMgr());
-
-            // SWEquation.Build(model);
-
-            
             SWSystem.CloseApp(app, true);
         }
     }

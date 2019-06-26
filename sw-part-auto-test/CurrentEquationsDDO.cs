@@ -11,7 +11,7 @@ namespace sw_part_auto_test
         private int index;
         private string userInput;
         private string equation;
-        private string equationEnd = "in";
+        private string equationEnd;
 
         public string NewEquation()
         {
