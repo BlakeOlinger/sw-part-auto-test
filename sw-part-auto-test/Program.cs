@@ -1,7 +1,4 @@
-﻿using SolidWorks.Interop.sldworks;
-using System;
-using System.Globalization;
-
+﻿
 namespace sw_part_auto_test
 {
     class Program
@@ -35,9 +32,15 @@ namespace sw_part_auto_test
 
             var app = CreateSWInstance.Create();
 
-           // StartScreen.Make(HelpInformation.initialAppMessage);
+            // StartScreen.Make(HelpInformation.initialAppMessage);
 
-            MainMenu.Make(app);
+            var swApp = SWApp.initialize(app);
+
+            // change above from startscreen to this line into class
+            // with static factory that takes app as parameter
+            // and has two private fields equationmanager and model
+            // then pass that object to mainmenu.make
+            MainMenu.Make(swApp);
 
             /*
             Out.Ln("Attempting to open document...");

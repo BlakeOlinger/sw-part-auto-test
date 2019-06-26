@@ -7,6 +7,7 @@ namespace sw_part_auto_test
     class CoverDTO
     {
         private string coverDiameter;
+        private string BCbool;
 
         public void SetCoverDiameter(string diameter)
         {
@@ -16,6 +17,16 @@ namespace sw_part_auto_test
         public string GetCoverDiameter()
         {
             return coverDiameter;
+        }
+
+        public void SetBCbool(string hasBC)
+        {
+            BCbool = hasBC;
+        }
+
+        public string GetBCbool()
+        {
+            return BCbool;
         }
     }
 }
