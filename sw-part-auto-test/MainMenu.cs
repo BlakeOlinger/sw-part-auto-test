@@ -20,26 +20,28 @@ namespace sw_part_auto_test
             // absolutely anything receiving user input must
             // be handled by daemon
 
-            // send to daemon
-            var userInput = User.GetConsoleInput(
-                ConsoleFrame.FeatureSelection()
-                );
 
-            ConsoleFrame.Clear();
+            string userInput = "init";
+            DaemonEventHandler.Scheduler(
+                userInput,
+                coverDDO,
+                equationManager,
+                model
+                );
 
             // every frame after the initial must have this header
             // every instance of user input must be able to select any
             // from the command menu
-            ConsoleFrame.CommandReferenceHeader();
-
+            // ConsoleFrame.CommandReferenceHeader();
+            /*
             int[] index = new int[3];
 
-            // send to daemon
+             send to daemon
             index = FeatureListDictionary.GetEquationsIndexes(userInput);
 
-            // Out.Ln(userInput);
+             Out.Ln(userInput);
            
-            // send to daemon
+             send to daemon
             coverDDO = FeatureEventHandler.ProcessUserInput(
                 coverDDO, equationManager, model,
                 AvailableEquationsDO.GetAll[index[0]],
@@ -49,12 +51,12 @@ namespace sw_part_auto_test
             
             UserConsolePrompts.PressAnyKeyToContinue();
 
-            // ConsoleFrame.Clear();
+            ConsoleFrame.Clear();
 
-           //  ConsoleFrame.CommandReferenceHeader();
+            ConsoleFrame.CommandReferenceHeader();
 
-            // send to daemon
-            /*userInput = User.GetConsoleInput("Type q to quit, " +
+            send to daemon
+            userInput = User.GetConsoleInput("Type q to quit, " +
                 "enter another command\n" +
                 "  ...or press any key to return to the menu.");
                 */

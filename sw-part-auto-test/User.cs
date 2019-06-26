@@ -6,6 +6,9 @@ namespace sw_part_auto_test
     {
         public static string GetConsoleInput(string inputRequest)
         {
+            ConsoleFrame.Clear();
+            ConsoleFrame.CommandReferenceHeader();
+
             Out.Ln(inputRequest);
             
             return Console.ReadLine();

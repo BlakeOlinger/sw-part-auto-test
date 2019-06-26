@@ -28,7 +28,7 @@ namespace sw_part_auto_test
                 " Cover Diameter: 1\n Cover BC Bool: 2";
         }
 
-        protected static void Clear()
+        public static void Clear()
         {
             Console.Clear();
 

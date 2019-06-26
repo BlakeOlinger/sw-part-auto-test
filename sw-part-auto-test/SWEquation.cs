@@ -51,34 +51,6 @@ namespace sw_part_auto_test
             }
         }
 
-        // possibly obsolete
-        /*
-        public static void SetEquation(EquationMgr equationMgr, string equation,
-            double value, int index)
-        {
-            if(equationMgr == null || equation == null)
-            {
-                Out.Ln("Could not Set Equation, missing arguments");
-            } else
-            {
-                var equationBase = equation;
-                string newEquation;
-
-                if (equationMgr.SetEquationAndConfigurationOption(
-                    index,
-                    (newEquation = "\"O.D.@Sketch1\"= 24in"),
-                    2,
-                    null
-                    ) != 1)
-                {
-                    Out.Ln("Failed to apply new values to equation");
-                }
-
-                Out.Ln(newEquation);
-            }
-        }
-        */
-
         public static void AddEquation(EquationMgr equationMgr,
             string equation)
         {
@@ -90,12 +62,11 @@ namespace sw_part_auto_test
             }
         }
 
-        /*
-        public static void DeleteEquation(EquationMgr equationMgr, int index)
+        
+        public static void DeleteEquation(EquationMgr equationManager, int index)
         {
-            equationMgr.Delete(index);
+            equationManager.Delete(index);
         }
-        */
 
         private static bool EquationIndexValidation(EquationMgr equationMgr,
             int index)

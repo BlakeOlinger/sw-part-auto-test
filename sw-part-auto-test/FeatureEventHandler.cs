@@ -13,13 +13,22 @@ namespace sw_part_auto_test
             string equationEnd, string userPrompt)
         { 
             var userInput = User.GetConsoleInput(userPrompt);
-
+            if(userInput == "q")
+            {
+                return null;
+            }
             var newEquation =
                 equation +
                 " " + userInput +
                 equationEnd;
 
-            // Out.Ln(newEquation);
+            if(equationManager.GetCount() != 0)
+            {
+                for(var i = 0; i < equationManager.GetCount(); ++i)
+                {
+                    SWEquation.DeleteEquation(equationManager ,i);
+                }
+            }
 
             SWEquation.AddEquation(
                 equationManager,

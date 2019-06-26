@@ -36,6 +36,12 @@ namespace sw_part_auto_test
             // user name and email - then have a DB initialize and install
             // dialogue out to console
             // will likely include git login as well
+            //
+            // end up making DB user accounts via administrator techniques
+            // create using fake account information
+            //
+            // also make blemp saves based on feature values within a range of
+            // ~0.0010 so it's not possible to create a duplicate blemp
             Out.Ln("Attempting to open document...");
 
             swApp.model = SWOpenPart.Open(app,
