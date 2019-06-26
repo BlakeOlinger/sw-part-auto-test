@@ -1,0 +1,5 @@
+﻿"Cover B.C." = IIF ( 1 = 1 , "unsuppressed" , "suppressed" )
+"Cover Hatch"= IIF ( 1 = 1 , "unsuppressed" , "suppressed" )
+"Cover Hatch Bolt Holes"= IIF ( 1 = 1 , "unsuppressed" , "suppressed" )
+"Cover Hole One"= IIF ( 1 = 1 , "unsuppressed" , "suppressed" )
+"Cover Hole One B.C."= IIF ( 1 = 1 , "unsuppressed" , "suppressed" )

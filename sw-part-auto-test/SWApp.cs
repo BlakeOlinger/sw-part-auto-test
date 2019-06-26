@@ -26,8 +26,17 @@ namespace sw_part_auto_test
 
             ConsoleFrame.DefaultFrame();
 
+            // Need to make this 'attempting to connect to DB...'
+            // use a local git repo connected to remote as DB
+            // change from this path to an install folder directory
+            // have a dev folder and a deployed folder that is a
+            // relative path
+            // have a DB check that checks for a git config file
+            // if not go through DB (git) set-up and request
+            // user name and email - then have a DB initialize and install
+            // dialogue out to console
+            // will likely include git login as well
             Out.Ln("Attempting to open document...");
-
 
             swApp.model = SWOpenPart.Open(app,
                 (DocumentSpecification)app.GetOpenDocSpec(
