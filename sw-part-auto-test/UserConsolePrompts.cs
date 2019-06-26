@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace sw_part_auto_test
 {
     class UserConsolePrompts
     {
+        /*
         public static void ClearConsoleConfirm()
         {
             var prompt = "Would you like to clear the screen?";
@@ -16,19 +15,17 @@ namespace sw_part_auto_test
             {
                 Console.Clear();
 
-                ConsoleFrame.InitialFrame();
+                ConsoleFrame.DefaultFrame();
             }
         }
-
+        */
         public static void PressAnyKeyToContinue()
         {
             var prompt = "\n ... Press any key continue.";
 
             var userInput = User.GetConsoleInput(prompt);
 
-            Console.Clear();
-
-            ConsoleFrame.InitialFrame();
         }
+
     }
 }

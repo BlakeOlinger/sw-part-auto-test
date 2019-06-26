@@ -4,26 +4,21 @@ namespace sw_part_auto_test
 {
     class ConsoleFrame
     {
-        private static void FrameHeader()
+        public static void FrameHeader()
         {
             var appHeader = "   TOPP Cover Automation Application";
 
             Out.Ln(appHeader);
         }
-        public static string StartScreen()
+
+        internal static void DefaultFrame()
         {
             FrameHeader();
-
-            Out.Ln("\n" + HelpInformation.initialAppMessage);
-
-            UserConsolePrompts.PressAnyKeyToContinue();
-
-            return null;
         }
 
-        internal static void InitialFrame()
+        public static void CommandReferenceHeader()
         {
-            FrameHeader();
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace sw_part_auto_test
@@ -10,6 +11,14 @@ namespace sw_part_auto_test
         {
             return equation.Substring(0,
                 (equation.Length - equation.IndexOf("=") + 1));
+        }
+
+        public static double StringToDouble(string input)
+        {
+            return Convert.ToDouble(
+                input,
+                new NumberFormatInfo()
+                );
         }
     }
 }

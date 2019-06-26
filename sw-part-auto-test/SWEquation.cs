@@ -80,7 +80,7 @@ namespace sw_part_auto_test
             string equation)
         {
             if ((equationMgr.Add(equationMgr.GetCount(), equation)) == 1){
-                Out.Ln("Equation Successfully Added");
+                Out.Ln("Equation Was Not Added");
             } else
             {
                 Out.Ln("Equation Successfully Added");

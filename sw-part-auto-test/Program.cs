@@ -35,7 +35,9 @@ namespace sw_part_auto_test
 
             var app = CreateSWInstance.Create();
 
-            ConsoleFrame.StartScreen();
+           // StartScreen.Make(HelpInformation.initialAppMessage);
+
+            MainMenu.Make(app);
 
             /*
             Out.Ln("Attempting to open document...");
@@ -72,7 +74,7 @@ namespace sw_part_auto_test
             // SWEquation.Build(model);
 
             
-            // SWSystem.CloseApp(app, true);
+            SWSystem.CloseApp(app, true);
         }
     }
 }
