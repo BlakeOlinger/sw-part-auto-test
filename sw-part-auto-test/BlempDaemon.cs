@@ -15,13 +15,18 @@ namespace sw_part_auto_test
             var model = swApp.GetModel();
             var format = new NumberFormatInfo();
 
-            string current = "40";
+            string current = null;
+            string compare = null;
 
             do
                 {
 
-                BlempConfig.LoadConfig();
-                string compare = BlempConfigDDO.ddo[1];
+                BlempConfig.LoadDDO();
+                if (BlempConfigDDO.ddo.Length > 0 &&
+                    BlempConfigDDO.ddo[0] != " ")
+                {
+                    compare = BlempConfigDDO.ddo[1];
+                }
 
                 // Out.Ln(string.Compare(current, compare));
 

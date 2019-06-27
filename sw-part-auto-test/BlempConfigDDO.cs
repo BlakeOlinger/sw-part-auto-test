@@ -6,6 +6,6 @@ namespace sw_part_auto_test
 {
     class BlempConfigDDO
     {
-        public static string[] ddo = new string[34];
+        public static string[] ddo = null;
     }
 }
