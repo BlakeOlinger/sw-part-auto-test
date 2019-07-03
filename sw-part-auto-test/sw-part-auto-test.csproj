@@ -4,6 +4,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>sw_part_auto_test</RootNamespace>
+    <ApplicationIcon />
+    <StartupObject>sw_part_auto_test.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

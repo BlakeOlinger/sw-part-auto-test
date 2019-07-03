@@ -1,13 +1,10 @@
 ﻿
-using System.Collections.Generic;
-
 namespace sw_part_auto_test
 {
     class Program
     {
         static void Main(string[] args)
         {
-
             /*
              * create working daemon - file listener for explicitly
              * specified .blemp files
@@ -15,18 +12,18 @@ namespace sw_part_auto_test
              * dia
              */
 
-            var app = CreateSWInstance.Create();
+            initializeSolidWorksInstance();
 
-            // StartScreen.Make(HelpInformation.initialAppMessage);
+            if (Config.SW_APP != null)
+            {
+                //  BlempConfig.LoadDDO();
 
-            // BlempConfig.LoadConfig();
 
-            
-            var swApp = SWApp.initialize(app);
+                //  var swApp = SWApp.initialize(app);
 
-            BlempDaemon.Start(swApp);
-            
-            
+                //   BlempDaemon.Start(swApp);
+            }
+
             /*
             var coverDDO = new List<CurrentEquationsDDO>();
 
@@ -34,6 +31,11 @@ namespace sw_part_auto_test
 
             SWSystem.CloseApp(app, true);
             */
+        }
+
+        private static void initializeSolidWorksInstance()
+        {
+            Config.SW_APP = CreateSWInstance.Create();
         }
     }
 }
