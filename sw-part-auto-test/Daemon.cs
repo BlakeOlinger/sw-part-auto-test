@@ -21,27 +21,31 @@ namespace sw_part_auto_test
                 if (Config.DDO.Count > 0)
                 {
                     compare = Config.DDO[1];
-                }
 
-                
-                if (string.Compare(current, compare) != 0)
-                {
-                    current = compare;
 
-                    string equation = Config.DDO.ToString();
 
-                    SWEquation.AddEquation(
-                        Config.equationManager,
-                        equation
-                        );
+                    if (string.Compare(current, compare) != 0)
+                    {
+                        current = compare;
 
-                    SWEquation.Build(
-                        Config.model
-                        );
+                        // may cause problems 
+                        // - equation may not be read properly by
+                        // SW
+                        string equation = Config.DDO.ToString();
 
-                    SWEquation.DeleteEquation(
-                        Config.equationManager
-                        , 0);
+                        SWEquation.AddEquation(
+                            Config.equationManager,
+                            equation
+                            );
+
+                        SWEquation.Build(
+                            Config.model
+                            );
+
+                        SWEquation.DeleteEquation(
+                            Config.equationManager
+                            , 0);
+                    }
                 }
                 
 

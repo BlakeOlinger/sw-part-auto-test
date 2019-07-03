@@ -28,12 +28,6 @@ namespace sw_part_auto_test
                     Daemon.Start();
             }
 
-            /*
-
-            MainMenu.Make(swApp, coverDDO);
-
-            SWSystem.CloseApp(app, true);
-            */
         }
 
         private static void InitializeSolidWorksInstance()
