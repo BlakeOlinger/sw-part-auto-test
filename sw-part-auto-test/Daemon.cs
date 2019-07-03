@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.IO;
 using System.Threading;
 
 namespace sw_part_auto_test
@@ -16,11 +17,10 @@ namespace sw_part_auto_test
                 {
 
                 Blemp.LoadDDO();
-                // TODO refactor to utilize Config.DDO
-                if (BlempConfigDDO.ddo.Length > 0 &&
-                    BlempConfigDDO.ddo[0] != " ")
+
+                if (Config.DDO.Count > 0)
                 {
-                    compare = BlempConfigDDO.ddo[1];
+                    compare = Config.DDO[1];
                 }
 
                 
@@ -28,30 +28,36 @@ namespace sw_part_auto_test
                 {
                     current = compare;
 
-                    string equation = //BlempConfigDDO.ddo[0] +
-                       // BlempConfigDDO.ddo[1] +
-                       // BlempConfigDDO.ddo[2];
+                    string equation = Config.DDO.ToString();
 
                     SWEquation.AddEquation(
-                        equationManager,
+                        Config.equationManager,
                         equation
                         );
 
                     SWEquation.Build(
-                        model
+                        Config.model
                         );
-                    SWEquation.DeleteEquation(equationManager, 0);
+
+                    SWEquation.DeleteEquation(
+                        Config.equationManager
+                        , 0);
                 }
                 
 
                 Thread.Sleep(300);
 
-                // TODO - refactor to read from SWmicroservice.config
-                // while first character = "0"
-                // add program state to config
-            } while ();
+                GetProgramState();
+            } while (string.Equals(Config.programState, "0"));
         }
 
+        private static void GetProgramState()
+        {
+            var programState = File.ReadAllText(
+                Config.SW_MS_CONFIG_PATH
+                );
 
+            Config.programState = programState.Substring(0, 1);
+        }
     }
 }

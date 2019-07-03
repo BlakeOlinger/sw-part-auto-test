@@ -10,8 +10,6 @@ namespace sw_part_auto_test
         {
             try
             {
-                ConsoleFrame.DefaultFrame();
-
                 var swType = Type.GetTypeFromProgID("SldWorks.Application.24");
 
                 if (swType == null)

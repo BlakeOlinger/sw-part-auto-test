@@ -3,6 +3,12 @@ namespace sw_part_auto_test
 {
     class Program
     {
+        private static bool isSolidWorksInitialized =
+            Config.model != null &&
+            Config.equationManager != null;
+        private static bool isSolidWorksInstanceCreated =
+            Config.SW_APP != null;
+
         static void Main(string[] args)
         {
             /*
@@ -14,32 +20,29 @@ namespace sw_part_auto_test
 
             CreateSolidWorksInstance();
 
-            if (Config.SW_APP != null)
+            if (isSolidWorksInstanceCreated)
             {
-                //
-                // initializes only - reads and populates just once
-                  Blemp.LoadDDO();
+                InitializeSolidWorksInstance();
 
-                // opens test - hard coded part model
-                // - may add this and below to config itself -
-                // won't be able to beyond testing
-                Config.model = Config.SW_APP.OpenDoc7(
-                    Config.BLOB_PATH
-                    );
-
-                // equation manager functionality comes from ModelDoc2
-                Config.equationManager = Config.model.GetEquationMgr();
-
-                 Daemon.Start();
+                if (isSolidWorksInitialized)
+                    Daemon.Start();
             }
 
             /*
-            var coverDDO = new List<CurrentEquationsDDO>();
 
             MainMenu.Make(swApp, coverDDO);
 
             SWSystem.CloseApp(app, true);
             */
+        }
+
+        private static void InitializeSolidWorksInstance()
+        {
+            Config.model = Config.SW_APP.OpenDoc7(
+                                Config.BLOB_PATH
+                                );
+
+            Config.equationManager = Config.model.GetEquationMgr();
         }
 
         private static void CreateSolidWorksInstance()
