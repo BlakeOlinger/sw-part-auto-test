@@ -11,7 +11,7 @@ namespace sw_part_auto_test
             try
             {
                 var swType = Type.GetTypeFromProgID("SldWorks.Application.24");
-
+                Out.Ln(" SW Type Info: " + swType.GUID);
                 if (swType == null)
                     throw new Exception();
 

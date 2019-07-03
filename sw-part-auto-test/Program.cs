@@ -1,4 +1,7 @@
 ﻿
+using SolidWorks.Interop.sldworks;
+using System.IO;
+
 namespace sw_part_auto_test
 {
     class Program
@@ -20,9 +23,12 @@ namespace sw_part_auto_test
 
             CreateSolidWorksInstance();
 
+            Out.Ln("SW Created " + (isSolidWorksInstanceCreated));
             if (isSolidWorksInstanceCreated)
             {
                 InitializeSolidWorksInstance();
+
+                Out.Ln(" SW Init " + (isSolidWorksInitialized));
 
                 if (isSolidWorksInitialized)
                     Daemon.Start();
@@ -32,11 +38,16 @@ namespace sw_part_auto_test
 
         private static void InitializeSolidWorksInstance()
         {
-            Config.model = Config.SW_APP.OpenDoc7(
-                                Config.BLOB_PATH
-                                );
+            var swDocSpecification = (DocumentSpecification)Config.SW_APP
+                .GetOpenDocSpec(Config.BLOB_PATH);
+            Out.Ln("SW Doc Spec null" + (swDocSpecification == null));
 
-            Config.equationManager = Config.model.GetEquationMgr();
+            Config.model = Config.SW_APP.OpenDoc7(swDocSpecification);
+            Out.Ln(" file found " + (File.Exists(Config.BLOB_PATH)));
+
+            Out.Ln(" Model null = " + (Config.model == null));
+            if(Config.model != null)
+                Config.equationManager = Config.model.GetEquationMgr();
         }
 
         private static void CreateSolidWorksInstance()
