@@ -1,18 +1,12 @@
-﻿using SolidWorks.Interop.sldworks;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
+﻿using System.Globalization;
 using System.Threading;
 
 namespace sw_part_auto_test
 {
-    class BlempDaemon
+    class Daemon
     {
-        public static void Start(SWApp swApp)
+        public static void Start()
         {
-            var equationManager = swApp.GetEquationManager();
-            var model = swApp.GetModel();
             var format = new NumberFormatInfo();
 
             string current = null;
@@ -21,26 +15,22 @@ namespace sw_part_auto_test
             do
                 {
 
-                BlempConfig.LoadDDO();
+                Blemp.LoadDDO();
+                // TODO refactor to utilize Config.DDO
                 if (BlempConfigDDO.ddo.Length > 0 &&
                     BlempConfigDDO.ddo[0] != " ")
                 {
                     compare = BlempConfigDDO.ddo[1];
                 }
 
-                // Out.Ln(string.Compare(current, compare));
-
                 
                 if (string.Compare(current, compare) != 0)
                 {
                     current = compare;
 
-                    Out.Ln("Daemon Detected Change");
-                 
-                    string equation = BlempConfigDDO.ddo[0] +
-                        BlempConfigDDO.ddo[1] +
-                        BlempConfigDDO.ddo[2];
-                    Out.Ln("New Equation: " + equation);
+                    string equation = //BlempConfigDDO.ddo[0] +
+                       // BlempConfigDDO.ddo[1] +
+                       // BlempConfigDDO.ddo[2];
 
                     SWEquation.AddEquation(
                         equationManager,
@@ -55,7 +45,11 @@ namespace sw_part_auto_test
                 
 
                 Thread.Sleep(300);
-            } while (true);
+
+                // TODO - refactor to read from SWmicroservice.config
+                // while first character = "0"
+                // add program state to config
+            } while ();
         }
 
 

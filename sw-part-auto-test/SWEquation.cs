@@ -1,6 +1,4 @@
 ﻿using SolidWorks.Interop.sldworks;
-using System;
-using System.Threading;
 
 namespace sw_part_auto_test
 {

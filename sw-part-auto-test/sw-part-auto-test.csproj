@@ -9,12 +9,59 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="toppAppDBdaemon\.idea\artifacts\toppAppDBdaemon_jar.xml" />
+    <Content Include="toppAppDBdaemon\.idea\description.html" />
+    <Content Include="toppAppDBdaemon\.idea\dictionaries\bolinger.xml" />
+    <Content Include="toppAppDBdaemon\.idea\dictionaries\final.xml" />
+    <Content Include="toppAppDBdaemon\.idea\encodings.xml" />
+    <Content Include="toppAppDBdaemon\.idea\misc.xml" />
+    <Content Include="toppAppDBdaemon\.idea\modules.xml" />
+    <Content Include="toppAppDBdaemon\.idea\project-template.xml" />
+    <Content Include="toppAppDBdaemon\.idea\uiDesigner.xml" />
+    <Content Include="toppAppDBdaemon\.idea\vcs.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="toppAppDBdaemon\.git\config" />
+    <None Include="toppAppDBdaemon\.git\description" />
+    <None Include="toppAppDBdaemon\.git\FETCH_HEAD" />
+    <None Include="toppAppDBdaemon\.git\HEAD" />
+    <None Include="toppAppDBdaemon\.git\hooks\applypatch-msg.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\commit-msg.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\post-update.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\pre-applypatch.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\pre-commit.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\pre-push.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\pre-rebase.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\pre-receive.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="toppAppDBdaemon\.git\hooks\update.sample" />
+    <None Include="toppAppDBdaemon\.git\index" />
+    <None Include="toppAppDBdaemon\.git\info\exclude" />
+    <None Include="toppAppDBdaemon\.git\logs\HEAD" />
+    <None Include="toppAppDBdaemon\.git\logs\refs\heads\master" />
+    <None Include="toppAppDBdaemon\.git\logs\refs\remotes\origin\HEAD" />
+    <None Include="toppAppDBdaemon\.git\objects\pack\pack-8615f8bf381789066caff250abdc1272358b91bb.idx" />
+    <None Include="toppAppDBdaemon\.git\objects\pack\pack-8615f8bf381789066caff250abdc1272358b91bb.pack" />
+    <None Include="toppAppDBdaemon\.git\ORIG_HEAD" />
+    <None Include="toppAppDBdaemon\.git\packed-refs" />
+    <None Include="toppAppDBdaemon\.git\refs\heads\master" />
+    <None Include="toppAppDBdaemon\.git\refs\remotes\origin\HEAD" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="SolidWorks.Interop.sldworks">
       <HintPath>..\..\..\..\..\..\..\Program Files\SolidWorks Corp\SOLIDWORKS (2)\api\redist\SolidWorks.Interop.sldworks.dll</HintPath>
     </Reference>
     <Reference Include="SolidWorks.Interop.swconst">
       <HintPath>..\..\..\..\..\..\..\Program Files\SolidWorks Corp\SOLIDWORKS (2)\api\redist\SolidWorks.Interop.swconst.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="toppAppDBdaemon\.git\objects\info\" />
+    <Folder Include="toppAppDBdaemon\.git\refs\tags\" />
   </ItemGroup>
 
 </Project>

@@ -12,16 +12,25 @@ namespace sw_part_auto_test
              * dia
              */
 
-            initializeSolidWorksInstance();
+            CreateSolidWorksInstance();
 
             if (Config.SW_APP != null)
             {
-                //  BlempConfig.LoadDDO();
+                //
+                // initializes only - reads and populates just once
+                  Blemp.LoadDDO();
 
+                // opens test - hard coded part model
+                // - may add this and below to config itself -
+                // won't be able to beyond testing
+                Config.model = Config.SW_APP.OpenDoc7(
+                    Config.BLOB_PATH
+                    );
 
-                //  var swApp = SWApp.initialize(app);
+                // equation manager functionality comes from ModelDoc2
+                Config.equationManager = Config.model.GetEquationMgr();
 
-                //   BlempDaemon.Start(swApp);
+                 Daemon.Start();
             }
 
             /*
@@ -33,7 +42,7 @@ namespace sw_part_auto_test
             */
         }
 
-        private static void initializeSolidWorksInstance()
+        private static void CreateSolidWorksInstance()
         {
             Config.SW_APP = CreateSWInstance.Create();
         }
