@@ -14,4 +14,5 @@
  // (HKEY_LOCAL_MACHINE\SOFTWARE\Classes\{progID})
  // for the solidworks instance
  // *.24 represents the 2016 edition
+ // - Exception 
 1) var swType = Type.GetTypeFromProgID("SldWorks.Application.24");

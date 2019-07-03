@@ -14,6 +14,10 @@ namespace sw_part_auto_test
 
         static void Main(string[] args)
         {
+            var progID = "SolidWorks.Application.24";
+
+            SWType.GetFromProgID(progID);
+
             /*
              * create working daemon - file listener for explicitly
              * specified .blemp files
@@ -21,8 +25,9 @@ namespace sw_part_auto_test
              * dia
              */
 
-            CreateSolidWorksInstance();
+           // CreateSolidWorksInstance();
 
+            /*
             Out.Ln("SW Created " + (isSolidWorksInstanceCreated));
             if (isSolidWorksInstanceCreated)
             {
@@ -33,6 +38,7 @@ namespace sw_part_auto_test
                 if (isSolidWorksInitialized)
                     Daemon.Start();
             }
+            */
 
         }
 
