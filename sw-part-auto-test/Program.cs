@@ -40,7 +40,7 @@ namespace sw_part_auto_test
             if(documentSpecification == null)
             {
                 logger.Error("\n ERROR: Could not Get Document Specification for file: " +
-                    devPath + "\n - Exiting Program");
+                    path + "\n - Exiting Program");
                 return;
             }
 

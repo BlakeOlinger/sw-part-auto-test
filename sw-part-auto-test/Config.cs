@@ -5,7 +5,6 @@ namespace sw_part_auto_test
 {
      internal class Config
     {
-        internal static ISldWorks SW_APP;
         internal static readonly string SW_MS_CONFIG_PATH =
             ".\\programFiles\\config\\SWmicroservice.config";
         internal static readonly string BLEMP_CONFIG_PATH =
