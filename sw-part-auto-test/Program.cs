@@ -33,13 +33,13 @@ namespace sw_part_auto_test
                 logger.Error("\n ERROR: Could not get reference to " +
                     "SolidWorks App\n - Exiting Program");
 
-                promptToExitProgram();
+               promptToExitProgram();
 
                 return;
             }
 
             // var devPath = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
-            var path = "toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
+            var path = "C:\\Users\\bolinger\\Desktop\\test install\\toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
 
             DocumentSpecification documentSpecification =
                 SWDocSpecification.GetDocumentSpecification(swApp, path);
@@ -100,8 +100,10 @@ namespace sw_part_auto_test
 
         private static void promptToExitProgram()
         {
+            /*
             Console.WriteLine(" - Press Any Key to Continue...");
             var userInput = Console.Read();
+            */
         }
     }
 }

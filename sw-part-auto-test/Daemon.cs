@@ -13,8 +13,8 @@ namespace sw_part_auto_test
         {
             // var devBlempDDOpath = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\programFiles\\blemp\\DDO.blemp";
             // var devProgramStatePath = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\programFiles\\config\\SWmicroservice.config";
-            var blempDDOpath = "programFiles\\blemp\\DDO.blemp";
-            var programStatePath = "programFiles\\config\\SWmicroservice.config";
+            var blempDDOpath = "C:\\Users\\bolinger\\Desktop\\test install\\programFiles\\blemp\\DDO.blemp";
+            var programStatePath = "C:\\Users\\bolinger\\Desktop\\test install\\programFiles\\config\\SWmicroservice.config";
             var programState = "1";
 
             string current = null;
