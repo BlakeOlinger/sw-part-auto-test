@@ -31,7 +31,8 @@ namespace sw_part_auto_test
                 return;
             }
 
-            var path = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
+           // var devPath = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
+            var path = "toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
 
             DocumentSpecification documentSpecification =
                 SWDocSpecification.GetDocumentSpecification(swApp, path);
@@ -39,7 +40,7 @@ namespace sw_part_auto_test
             if(documentSpecification == null)
             {
                 logger.Error("\n ERROR: Could not Get Document Specification for file: " +
-                    path + "\n - Exiting Program");
+                    devPath + "\n - Exiting Program");
                 return;
             }
 
@@ -55,6 +56,8 @@ namespace sw_part_auto_test
                 return;
             }
 
+            Config.model = model;
+
             logger.Debug("\n Getting Equation Manager from Model");
 
             EquationMgr equationManager = model.GetEquationMgr();
@@ -66,12 +69,15 @@ namespace sw_part_auto_test
                 return;
             }
 
+            Config.equationManager = equationManager;
+
             logger.Debug("\n SolidWorks App Instance Initialized - Starting Microservice Daemon");
 
-            // Daemon.Start();
+            Daemon.Start();
 
 
-           logger.Debug("\n Closing Open SolidWorks Documents");
+           logger.Debug("\n Closing Open SolidWorks Documents" +
+               "\n - Exiting Microservice");
            swApp.CloseAllDocuments(true);
         }
     }
