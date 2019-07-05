@@ -31,7 +31,7 @@ namespace sw_part_auto_test
                 return;
             }
 
-            var path = "some/file.path";
+            var path = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
 
             DocumentSpecification documentSpecification =
                 SWDocSpecification.GetDocumentSpecification(swApp, path);
@@ -43,23 +43,36 @@ namespace sw_part_auto_test
                 return;
             }
 
+            logger.Debug("\n Getting Model from Document Specification");
 
-            /*
-             * var swDocSpecification = (DocumentSpecification)Config.SW_APP
-                .GetOpenDocSpec(Config.BLOB_PATH);
-                */
+            ModelDoc2 model = (ModelDoc2)swApp.OpenDoc7(
+                documentSpecification);
 
-           // Daemon.Start();
+            if(model == null)
+            {
+                logger.Error("\n ERROR: Could not get Model from " +
+                    "Document Specification\n - Exiting Program");
+                return;
+            }
+
+            logger.Debug("\n Getting Equation Manager from Model");
+
+            EquationMgr equationManager = model.GetEquationMgr();
+
+            if(equationManager == null)
+            {
+                logger.Error("\n ERROR: Could not get Equation Manager from Model\n" +
+                    " - Exiting Program");
+                return;
+            }
+
+            logger.Debug("\n SolidWorks App Instance Initialized - Starting Microservice Daemon");
+
+            // Daemon.Start();
 
 
-        }
-
-        private static void InitializeSolidWorksInstance()
-        {
-
-            Out.Ln(" Model null = " + (Config.model == null));
-            if(Config.model != null)
-                Config.equationManager = Config.model.GetEquationMgr();
+           logger.Debug("\n Closing Open SolidWorks Documents");
+           swApp.CloseAllDocuments(true);
         }
     }
 }
