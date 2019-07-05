@@ -4,28 +4,35 @@ using System.IO;
 
 namespace sw_part_auto_test
 {
-    class Program
+    public class Program
     {
         private static bool isSolidWorksInitialized =
             Config.model != null &&
             Config.equationManager != null;
-        private static bool isSolidWorksInstanceCreated =
-            Config.SW_APP != null;
+        public static readonly string PROG_ID = "SolidWorks.Application.24";
+        private static readonly NLog.Logger logger =
+            NLog.LogManager.GetCurrentClassLogger();
 
         static void Main(string[] args)
         {
-            var progID = "SolidWorks.Application.24";
 
-            SWType.GetFromProgID(progID);
+            var swType = SWType.GetFromProgID(PROG_ID);
 
-            /*
-             * create working daemon - file listener for explicitly
-             * specified .blemp files
-             * make simple GUI for just a single equation - cover
-             * dia
-             */
+            if (swType == null)
+            {
+                logger.Error("\n ERROR: GetFromProgID returned null\n" +
+                    " - Exiting Program");
+                return;
+            }
 
-           // CreateSolidWorksInstance();
+            var swApp = CreateSWInstance.Create(swType);
+
+            if(swApp == null)
+            {
+                logger.Error("\n ERROR: Could not get reference to " +
+                    "SolidWorks App\n - Exiting Program");
+                return;
+            }
 
             /*
             Out.Ln("SW Created " + (isSolidWorksInstanceCreated));
@@ -54,11 +61,6 @@ namespace sw_part_auto_test
             Out.Ln(" Model null = " + (Config.model == null));
             if(Config.model != null)
                 Config.equationManager = Config.model.GetEquationMgr();
-        }
-
-        private static void CreateSolidWorksInstance()
-        {
-            Config.SW_APP = CreateSWInstance.Create();
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace sw_part_auto_test
 {
@@ -12,49 +10,42 @@ namespace sw_part_auto_test
        public static Type GetFromProgID(string progID)
         {
 
-           try
-            {
-                Validation.
-                    ThrowArgumentExceptionIfEmptyArg(
+           logger.Debug("\n Getting SolidWorks Type from ProgID - " +
                     progID);
 
-                Validation.
-                    ThrowArgumentExceptionIfNullArg(
-                    progID);
+            try
+            {
+                try
+                {
+                    if(progID == null ||
+                        string.Compare(progID, "") == 0)
+                    {
+                        throw new ArgumentException();
+                    }
+                } catch(ArgumentException exception)
+                {
+                    logger.Error(exception, "\n Invalid Argument: " +
+                        "ProgID was either empty or null");
+
+                    return null;
+                }
 
                 var swType = Type.GetTypeFromProgID("SldWorks.Application.24");
 
-
-                // TODO - make return type Validation.method and test
-                // test this SWType method that returns nulls when expected
                 if (swType == null)
                     throw new Exception();
 
-            } catch (ArgumentException exception)
+                logger.Debug("\n Returning Type for ProgID: " +
+                    progID);
+
+                return swType;
+            } catch(Exception exception)
             {
-                logger.Error(exception,
-                    " Argument cannot be empty or null");
+                logger.Error(exception, "\n ERROR: Could not Get Type from ProgID: " +
+                    progID);
 
                 return null;
-            } catch (Exception exception)
-            {
-                logger.Error(exception, " Could not get Type of ProgID");
             }
-
-
-            // TODO - Wrap in a (Type Class.method(string progID)) that
-            // catches ARgumentException for null progID,
-            // throws exception for returns null
-            // and throws for a return that isn't System.RuntimeType
-            // MAKE tests testing the method for these cases
-            // MAKE proper logging available rather than simple console.out
-            //   var swType = Type.GetTypeFromProgID("SldWorks.Application.24");
-            //   Out.Ln(" SW Type is null " + (swType == null));
-            // return null for ProgID not found or error loading the Type
-            // Exception - ArgumentException if ProgID is null
-
-            //   Out.Ln(" SW Type Info: " + swType.GetType());
-            // return System.RuntimeType for valid SW ProgID
             
         }
     }

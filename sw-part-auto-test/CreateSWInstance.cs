@@ -4,37 +4,27 @@ using System;
 
 namespace sw_part_auto_test
 {
-    class CreateSWInstance
+    public class CreateSWInstance
     {
-        public static ISldWorks Create()
+        private static readonly NLog.Logger logger =
+            NLog.LogManager.GetCurrentClassLogger();
+        public static ISldWorks Create(Type swType)
         {
             try
             {
+                logger.Debug("\n Creating reference to SolidWorks instance");
 
+                var app = (ISldWorks)Activator.CreateInstance(swType);
 
-                return null;
-                /*
-                if (swType == null)
-                    throw new Exception();
+                logger.Debug("\n Returning referenced instance: " + app);
 
-                try
-                {
-                    var app = (ISldWorks)Activator.CreateInstance(swType);
-                    if (app == null)
-                        throw new Exception();
-
-                    return app;
-                } catch (Exception)
-                {
-                    return null;
-                }
-                */
-
-            } catch (Exception)
+                return app;
+            } catch(Exception exception)
             {
+                logger.Error(exception, "\n ERROR: Could not create reference\n" +
+                    " To SolidWorks instance");
                 return null;
             }
-            
         }
     }
 }
