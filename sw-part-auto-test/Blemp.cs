@@ -38,12 +38,13 @@ namespace sw_part_auto_test
 
         public static void PopulateDDO(string DDOdata)
         {
+           
             string[] equationSegments = DDOdata.Split("$");
 
-            Config.DDO.Clear();
-
-            if (equationSegments.Length > 0)
+            if (equationSegments.Length > 1)
             {
+                Config.DDO.Clear();
+
                 for (var i = 0; i < equationSegments.Length; ++i)
                 {
                     Config.DDO.Add(equationSegments[i]);

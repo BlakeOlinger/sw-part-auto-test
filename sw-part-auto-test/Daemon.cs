@@ -21,53 +21,59 @@ namespace sw_part_auto_test
             logger.Debug("\n Microservice Daemon Started");
 
             do {
-
+                
             var rawBlempString = Blemp.LoadDDO(blempDDOpath);
-
+                
                 if (rawBlempString == null)
                 {
                     logger.Error("\n ERROR: Unable to load Blemp DDO");
                     return;
                 }
 
-                logger.Debug(" - Raw blemp data - " + rawBlempString +
-                                "\n - Press Any Key to Continue...");
-               // Console.Read();
-
-                Blemp.PopulateDDO(rawBlempString);
-                
-                if (Config.DDO.Count > 1)
+                if (string.Compare(rawBlempString, "") != 0)
                 {
+                    logger.Debug("\n - Raw blemp data - " + rawBlempString +
+                                    "\n - Press Any Key to Continue...");
+                }
+
+                // Console.Read();
+                
+                if (string.Compare(File.ReadAllText(blempDDOpath), "") != 0)
+                {
+                    Blemp.PopulateDDO(rawBlempString);
+
                     logger.Debug(" - DDO Count - " + Config.DDO.Count +
                                 "\n - Press Any Key to Continue...");
+                    
                    // Console.Read();
                     try
                     {
                         compare = Config.DDO[1];
-
+                        
                         logger.Debug(" - compare & DDO[1] - " + compare
                             + "   " + Config.DDO[1] +
                                 "\n - Press Any Key to Continue...");
-
+                        
                        // Console.Read();
 
                         if (string.Compare(current, compare) != 0)
                         {
+                            
                             current = compare;
-
+                            
                             string equation = Config.DDO[0] + Config.DDO[1] +
                                 Config.DDO[2];
-
+                            
                             logger.Debug(" - Equation to SW - " + equation +
                                 "\n - Press Any Key to Continue...");
-
+                            
                             //Console.Read();
 
                             SWEquation.AddEquation(
                                 Config.equationManager,
                                 equation
                                 );
-
+                            
                             SWEquation.Build(
                                 Config.model
                                 );
@@ -75,12 +81,15 @@ namespace sw_part_auto_test
                             SWEquation.DeleteEquation(
                                 Config.equationManager
                                 , 0);
+                                
                         }
+                        
+                        
                     } catch(ArgumentOutOfRangeException){ }
+                    
                 }
-                
-
-               Thread.Sleep(300);
+    
+                Thread.Sleep(300);
 
                programState = GetProgramState(programStatePath);
 
