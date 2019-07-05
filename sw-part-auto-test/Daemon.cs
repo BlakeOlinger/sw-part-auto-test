@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using System.Threading;
 
@@ -11,8 +10,7 @@ namespace sw_part_auto_test
             NLog.LogManager.GetCurrentClassLogger();
         public static void Start()
         {
-            // var devBlempDDOpath = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\programFiles\\blemp\\DDO.blemp";
-            // var devProgramStatePath = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\programFiles\\config\\SWmicroservice.config";
+            
             var blempDDOpath = "C:\\Users\\bolinger\\Desktop\\test install\\programFiles\\blemp\\DDO.blemp";
             var programStatePath = "C:\\Users\\bolinger\\Desktop\\test install\\programFiles\\config\\SWmicroservice.config";
             var programState = "1";
@@ -26,28 +24,44 @@ namespace sw_part_auto_test
 
             var rawBlempString = Blemp.LoadDDO(blempDDOpath);
 
-                if(rawBlempString == null)
+                if (rawBlempString == null)
                 {
                     logger.Error("\n ERROR: Unable to load Blemp DDO");
                     return;
                 }
 
+                logger.Debug(" - Raw blemp data - " + rawBlempString +
+                                "\n - Press Any Key to Continue...");
+               // Console.Read();
+
                 Blemp.PopulateDDO(rawBlempString);
                 
-                if (Config.DDO.Count > 0)
+                if (Config.DDO.Count > 1)
                 {
+                    logger.Debug(" - DDO Count - " + Config.DDO.Count +
+                                "\n - Press Any Key to Continue...");
+                   // Console.Read();
                     try
                     {
                         compare = Config.DDO[1];
+
+                        logger.Debug(" - compare & DDO[1] - " + compare
+                            + "   " + Config.DDO[1] +
+                                "\n - Press Any Key to Continue...");
+
+                       // Console.Read();
 
                         if (string.Compare(current, compare) != 0)
                         {
                             current = compare;
 
-                            // may cause problems 
-                            // - equation may not be read properly by
-                            // SW
-                            string equation = Config.DDO.ToString();
+                            string equation = Config.DDO[0] + Config.DDO[1] +
+                                Config.DDO[2];
+
+                            logger.Debug(" - Equation to SW - " + equation +
+                                "\n - Press Any Key to Continue...");
+
+                            //Console.Read();
 
                             SWEquation.AddEquation(
                                 Config.equationManager,

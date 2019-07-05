@@ -40,6 +40,8 @@ namespace sw_part_auto_test
         {
             string[] equationSegments = DDOdata.Split("$");
 
+            Config.DDO.Clear();
+
             if (equationSegments.Length > 0)
             {
                 for (var i = 0; i < equationSegments.Length; ++i)
