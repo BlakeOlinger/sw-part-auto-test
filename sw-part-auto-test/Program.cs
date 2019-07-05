@@ -1,5 +1,6 @@
 ﻿
 using SolidWorks.Interop.sldworks;
+using System;
 using System.IO;
 
 namespace sw_part_auto_test
@@ -19,28 +20,37 @@ namespace sw_part_auto_test
             {
                 logger.Error("\n ERROR: GetFromProgID returned null\n" +
                     " - Exiting Program");
+
+                promptToExitProgram();
+
                 return;
             }
 
             ISldWorks swApp = CreateSWInstance.Create(swType);
 
-            if(swApp == null)
+            if (swApp == null)
             {
                 logger.Error("\n ERROR: Could not get reference to " +
                     "SolidWorks App\n - Exiting Program");
+
+                promptToExitProgram();
+
                 return;
             }
 
-           // var devPath = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
+            // var devPath = "C:\\Users\\bolinger\\Documents\\Visual Studio 2019\\Projects\\sw-part-auto-test\\sw-part-auto-test\\toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
             var path = "toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
 
             DocumentSpecification documentSpecification =
                 SWDocSpecification.GetDocumentSpecification(swApp, path);
 
-            if(documentSpecification == null)
+            if (documentSpecification == null)
             {
                 logger.Error("\n ERROR: Could not Get Document Specification for file: " +
                     path + "\n - Exiting Program");
+
+                promptToExitProgram();
+
                 return;
             }
 
@@ -49,10 +59,13 @@ namespace sw_part_auto_test
             ModelDoc2 model = (ModelDoc2)swApp.OpenDoc7(
                 documentSpecification);
 
-            if(model == null)
+            if (model == null)
             {
                 logger.Error("\n ERROR: Could not get Model from " +
                     "Document Specification\n - Exiting Program");
+
+                promptToExitProgram();
+
                 return;
             }
 
@@ -62,10 +75,13 @@ namespace sw_part_auto_test
 
             EquationMgr equationManager = model.GetEquationMgr();
 
-            if(equationManager == null)
+            if (equationManager == null)
             {
                 logger.Error("\n ERROR: Could not get Equation Manager from Model\n" +
                     " - Exiting Program");
+
+                promptToExitProgram();
+
                 return;
             }
 
@@ -75,10 +91,17 @@ namespace sw_part_auto_test
 
             Daemon.Start();
 
+            promptToExitProgram();
 
-           logger.Debug("\n Closing Open SolidWorks Documents" +
-               "\n - Exiting Microservice");
-           swApp.CloseAllDocuments(true);
+            logger.Debug("\n Closing Open SolidWorks Documents" +
+                "\n - Exiting Microservice");
+            swApp.CloseAllDocuments(true);
+        }
+
+        private static void promptToExitProgram()
+        {
+            Console.WriteLine(" - Press Any Key to Continue...");
+            var userInput = Console.Read();
         }
     }
 }
