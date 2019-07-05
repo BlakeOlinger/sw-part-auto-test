@@ -6,9 +6,6 @@ namespace sw_part_auto_test
 {
     public class Program
     {
-        private static bool isSolidWorksInitialized =
-            Config.model != null &&
-            Config.equationManager != null;
         public static readonly string PROG_ID = "SolidWorks.Application.24";
         private static readonly NLog.Logger logger =
             NLog.LogManager.GetCurrentClassLogger();
@@ -25,7 +22,7 @@ namespace sw_part_auto_test
                 return;
             }
 
-            var swApp = CreateSWInstance.Create(swType);
+            ISldWorks swApp = CreateSWInstance.Create(swType);
 
             if(swApp == null)
             {
@@ -34,29 +31,31 @@ namespace sw_part_auto_test
                 return;
             }
 
-            /*
-            Out.Ln("SW Created " + (isSolidWorksInstanceCreated));
-            if (isSolidWorksInstanceCreated)
+            var path = "some/file.path";
+
+            DocumentSpecification documentSpecification =
+                SWDocSpecification.GetDocumentSpecification(swApp, path);
+
+            if(documentSpecification == null)
             {
-                InitializeSolidWorksInstance();
-
-                Out.Ln(" SW Init " + (isSolidWorksInitialized));
-
-                if (isSolidWorksInitialized)
-                    Daemon.Start();
+                logger.Error("\n ERROR: Could not Get Document Specification for file: " +
+                    path + "\n - Exiting Program");
+                return;
             }
-            */
+
+
+            /*
+             * var swDocSpecification = (DocumentSpecification)Config.SW_APP
+                .GetOpenDocSpec(Config.BLOB_PATH);
+                */
+
+           // Daemon.Start();
+
 
         }
 
         private static void InitializeSolidWorksInstance()
         {
-            var swDocSpecification = (DocumentSpecification)Config.SW_APP
-                .GetOpenDocSpec(Config.BLOB_PATH);
-            Out.Ln("SW Doc Spec null" + (swDocSpecification == null));
-
-            Config.model = Config.SW_APP.OpenDoc7(swDocSpecification);
-            Out.Ln(" file found " + (File.Exists(Config.BLOB_PATH)));
 
             Out.Ln(" Model null = " + (Config.model == null));
             if(Config.model != null)
