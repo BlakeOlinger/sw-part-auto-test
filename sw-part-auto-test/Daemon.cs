@@ -13,7 +13,7 @@ namespace sw_part_auto_test
             
             var blempDDOpath = "C:\\Users\\bolinger\\Desktop\\test install\\programFiles\\blemp\\DDO.blemp";
             var programStatePath = "C:\\Users\\bolinger\\Desktop\\test install\\programFiles\\config\\SWmicroservice.config";
-            var programState = "1";
+            var programState = "0";
 
             string current = null;
            string compare = null;
@@ -88,7 +88,7 @@ namespace sw_part_auto_test
                     } catch(ArgumentOutOfRangeException){ }
                     
                 }
-    
+
                 Thread.Sleep(300);
 
                programState = GetProgramState(programStatePath);
