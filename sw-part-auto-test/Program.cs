@@ -13,6 +13,8 @@ namespace sw_part_auto_test
         static void Main(string[] args)
         {
 
+            LiveUpdateTest();
+
             var swType = SWType.GetFromProgID(PROG_ID);
 
             if (swType == null)
@@ -36,8 +38,6 @@ namespace sw_part_auto_test
 
                 return;
             }
-
-            LiveUpdateTest(swApp);
 
             var path = "C:\\Users\\bolinger\\Desktop\\test install\\toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
 
@@ -98,9 +98,9 @@ namespace sw_part_auto_test
             swApp.CloseAllDocuments(true);
         }
 
-        private static void LiveUpdateTest(ISldWorks sldWorks)
+        private static void LiveUpdateTest()
         {
-            sldWorks.SendMsgToUser("Live Update Test Success!");
+            Console.WriteLine("Live Update Test Success!");
         }
 
         private static void promptToExitProgram()
