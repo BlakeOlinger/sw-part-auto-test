@@ -13,7 +13,7 @@ namespace sw_part_auto_test
         static void Main(string[] args)
         {
 
-            LiveUpdateTest();
+            // LiveUpdateTest();
 
             var swType = SWType.GetFromProgID(PROG_ID);
 
@@ -100,7 +100,7 @@ namespace sw_part_auto_test
 
         private static void LiveUpdateTest()
         {
-            Console.WriteLine("Live Update Test Success!");
+            logger.Info("Live Update Test Passed?");
         }
 
         private static void promptToExitProgram()
