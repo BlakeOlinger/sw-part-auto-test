@@ -1,7 +1,6 @@
 ﻿
-using SolidWorks.Interop.sldworks;
 using System;
-using System.IO;
+using SolidWorks.Interop.sldworks;
 
 namespace sw_part_auto_test
 {
@@ -37,6 +36,8 @@ namespace sw_part_auto_test
 
                 return;
             }
+
+            LiveUpdateTest(swApp);
 
             var path = "C:\\Users\\bolinger\\Desktop\\test install\\toppAppDBdaemon\\blob\\C-HSSX.blob.SLDPRT";
 
@@ -95,6 +96,11 @@ namespace sw_part_auto_test
             logger.Debug("\n Closing Open SolidWorks Documents" +
                 "\n - Exiting Microservice");
             swApp.CloseAllDocuments(true);
+        }
+
+        private static void LiveUpdateTest(ISldWorks sldWorks)
+        {
+            sldWorks.SendMsgToUser("Live Update Test Success!");
         }
 
         private static void promptToExitProgram()
