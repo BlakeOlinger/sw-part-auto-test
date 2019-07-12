@@ -37,8 +37,20 @@ namespace sw_part_auto_test
                 }
 
                 // Console.Read();
-                
-                if (string.Compare(File.ReadAllText(blempDDOpath), "") != 0)
+
+                string blempString = "";
+
+                try
+                {
+                    blempString = File.ReadAllText(blempDDOpath);
+                } catch (IOException exception)
+                {
+                    logger.Error(exception, "Error Could Not Read DDO.blemp");
+                }
+
+                if (string.Compare(
+                    blempString == null ? "" : blempString ,
+                    "") != 0)
                 {
                     Blemp.PopulateDDO(rawBlempString);
 
